@@ -4,6 +4,7 @@
 @import '../components/theme-switch';
 @import '../components/navigation';
 
+
 .page-header {
   position: fixed;
   top: 0;
@@ -21,11 +22,13 @@
     background: #202025;
   }
 
-  @media (min-width: 768px) and (max-width: 1023px) {
-    height: 65px;
+  @include breakpoint(min, tablet) {
+    @include breakpoint(max, laptop) {
+      height: 65px;
+    }
   }
 
-  @media screen and (min-width: 1024px) {
+  @include breakpoint(min, laptop) {
     overflow: visible;
     height: 60px;
   }
@@ -47,7 +50,7 @@
       background: #202025;
     }
 
-    @media screen and (max-width: 767px) {
+    @include breakpoint(max, tablet) {
       position: fixed;
       right: 0;
       top: 55px;
@@ -61,7 +64,7 @@
       transition: opacity 0.4s, transform 0.4s ease-in-out;
     }
 
-    @media screen and (min-width: 1024px) {
+    @include breakpoint(min, laptop) {
       margin-right: auto;
       display: flex;
       align-items: center;
@@ -73,7 +76,7 @@
 }
 
 .visible {
-  @media screen and (max-width: 1023px) {
+  @include breakpoint(max, laptop) {
     transform: none;
     opacity: 1;
   }

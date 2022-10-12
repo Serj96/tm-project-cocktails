@@ -1,0 +1,33 @@
+@mixin breakpoint($direction, $breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @if $direction == max {
+      @media (max-width: ($breakpoint-value - 1)) {
+        @content;
+      }
+    } @else if $direction == min {
+      @media (min-width: $breakpoint-value) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin position($type: relative) {
+  position: $type;
+  top: 0;
+  left: 0;
+}
+
+@mixin photo($photo) {
+  background-image: url($photo);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
