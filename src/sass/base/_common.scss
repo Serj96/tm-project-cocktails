@@ -7,6 +7,16 @@ body {
   margin: 0;
 }
 
+body.light-theme {
+  background-color: #fff;
+  color: #202025;
+}
+
+body.dark-theme {
+  background-color: #202025;
+  color: #fff;
+}
+
 a {
   color: currentColor;
   text-decoration: none;
