@@ -1,7 +1,7 @@
 import { writeRemovetIngridientFunction } from './ingridients';
 import { checkedBtns } from '../servise/firebase';
 import { getInfoAboutIngridientByName } from '../servise/apiData';
-import { sampleModalComponents } from '../MarkupSample/sampleModalComponents';
+import { sampleModalComponents } from '../markup/sampleModalComponents';
 export function openIngridientInfoModal(selector) {
   const favoriteBtn = document.querySelector(selector);
   favoriteBtn?.addEventListener('click', openModal);

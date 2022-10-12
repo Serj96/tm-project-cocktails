@@ -2,7 +2,7 @@ import { writeRemovetCoctaileFunction } from './coctails';
 import { openIngridientInfoModal } from './modalComponents';
 import { checkedBtns } from '../servise/firebase';
 import { getInfoAboutCoctail } from '../servise/apiData';
-import { sampleModalCoctails } from '../MarkupSample/sampleModalCoctails';
+import { sampleModalCoctails } from '../markup/sampleModalCoctails';
 
 export function openCoctaileInfoModal(selector) {
   const favoriteBtn = document.querySelector(selector);

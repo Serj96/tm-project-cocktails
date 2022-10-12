@@ -2,7 +2,7 @@ import { removeUserData, auth } from '../servise/firebase';
 import { openCoctaileInfoModal } from './modalCoctails';
 import { onAuthStateChanged } from 'firebase/auth';
 import { getInfoAboutCoctail } from '../servise/apiData';
-import { sampleFacCoc } from '../MarkupSample/sampleFacCoc';
+import { sampleFacCoc } from '../markup/sampleFacCoc';
 
 const favCoctailesList = document.querySelector('.favorite__coctails');
 

@@ -2,7 +2,7 @@ import { checkedBtns } from '../servise/firebase';
 import { writeRemovetCoctaileFunction } from './coctails';
 import { openCoctaileInfoModal } from './modalCoctails';
 import { randomCoctail } from '../servise/apiData';
-import { sampleCoctaileCard } from '../MarkupSample/sampleCoctaileCard';
+import { sampleCoctaileCard } from '../markup/sampleCoctaileCard';
 
 const width = document.documentElement.clientWidth;
 

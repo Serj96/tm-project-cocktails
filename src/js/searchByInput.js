@@ -4,6 +4,6 @@ import { gerInfoByName } from '../servise/apiData';
 import {
   sampleCoctaileCard,
   cocktailsList,
-} from '../MarkupSample/sampleCoctaileCard';
+} from '../markup/sampleCoctaileCard';
 
 

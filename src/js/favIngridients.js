@@ -2,7 +2,7 @@ import { removeUserData, auth } from '../servise/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { openIngridientInfoModal } from './modalComponents';
 import { getInfoAboutIngridient } from '../servise/apiData';
-import { sampleFavIngr, preloader } from '../MarkupSample/sampleFavIngr';
+import { sampleFavIngr, preloader } from '../markup/sampleFavIngr';
 
 const favIngridientsList = document.querySelector('.f-ing_blocks');
 
