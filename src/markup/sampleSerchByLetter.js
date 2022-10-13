@@ -1,5 +1,5 @@
-export async function sampleSerchByLetter(arr) {
-  return arr.map(({ strDrinkThumb, strDrink, idDrink }) => {
+export async function sampleSerchByLetter({ strDrinkThumb, strDrink, idDrink }) {
+
     return `<li class='gallery__card'>
 
      <img src=${strDrinkThumb} alt=${strDrink} class='gallery__card-img'>
@@ -13,5 +13,5 @@ export async function sampleSerchByLetter(arr) {
       </div>
      </div>
      </li>`;
-  });
+
 }

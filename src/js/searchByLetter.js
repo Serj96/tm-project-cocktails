@@ -3,8 +3,11 @@ import { sampleSerchByLetter } from '../markup/sampleSerchByLetter';
 import { checkedBtns } from '../servise/firebase';
 import { getInfoByLetter } from '../servise/apiData';
 import Notiflix from 'notiflix';
+import { ActionCodeURL } from 'firebase/auth';
+import { section } from '../markup/sampleCoctaileCard';
 
-const arrayLetters = [
+
+let arrayLetters = [
   'A',
   'B',
   'C',
@@ -43,12 +46,10 @@ const arrayLetters = [
   '0',
 ];
 const ulList = document.querySelector('.hero__list');
-const searchLetters = document.querySelectorAll('.hero__btn');
-console.log(searchLetters);
 function markupList(arrayLetters) {
   const markup = arrayLetters.map(
     ([arrayLetters]) =>
-      `<li class="hero__item"> <button class="hero__btn">${arrayLetters}</button></li>`
+      `<li class="hero__item"> <button class="hero__btn" type ='button' data-type = ${arrayLetters}>${arrayLetters}</button></li>`
   );
   ulList.innerHTML = markup.join('');
 }
@@ -59,19 +60,28 @@ function fetch() {
 }
 fetch();
 
-let letter = '';
-//searchLetters.addEventListern("click", getSearchCoctail)
-
-/*function getSearchCoctail(e) {
-  console.log(letter);
- getInfoByLetter(letter).then(sampleSerchByLetter()).catch(error => {
-    cocktailsList.innerHTML = sorryContent()
-    console.log(error)
-  } )
- 
+ulList.addEventListener('click', getSearch)
+function getSearch(e) {
+ // console.log(e.target.tagName);
+  if (e.target.tagName !== "BUTTON") return;
+  const letter = e.target.dataset.type;
+      getInfoByLetter(letter)
+    .then(test)
+        .catch(error => {
+      console.log(error);
+    })
 }
-getSearchCoctail()
-*/
+function test({ data }) {
+ if (data.drinks === null) {
+   section.innerHTML = sorryContent(data)
+ } else if (data.drinks !== null) {
+   const markup = data.drinks.map(sampleSerchByLetter)
+   cocktailsList.innerHTML = markup.join('');
+
+ }
+
+
+}
 
 function sorryContent(){
   return  `<h2 class="sorry__title">Sorry, we didn't find any cocktail for you</h2><picture class="">
