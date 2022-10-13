@@ -6,6 +6,7 @@ const logo = document.querySelector('.logo');
 const searchForm = document.querySelector('.search-form');
 const body = document.body;
 const navItems = nav.querySelectorAll('a');
+const form = document.querySelector('.search-form');
 
 burger.addEventListener('click', () => {
   body.classList.toggle('stop-scroll');
@@ -19,12 +20,21 @@ burger.addEventListener('click', () => {
 
 navItems.forEach(el => {
   el.addEventListener('click', () => {
-    body.classList.remove('stop-scroll');
-    burger.classList.remove('burger-active');
-    box.classList.remove('visible');
-    nav.classList.remove('visible');
-    themeSwitch.classList.remove('visible');
-    logo.classList.add('visible');
-    searchForm.classList.add('visible');
+    el.preventDefault();
+    classUtil();
   });
 });
+
+form.addEventListener('submit', () => {
+  classUtil();
+});
+
+function classUtil() {
+  body.classList.remove('stop-scroll');
+  burger.classList.remove('burger-active');
+  box.classList.remove('visible');
+  nav.classList.remove('visible');
+  themeSwitch.classList.remove('visible');
+  logo.classList.add('visible');
+  searchForm.classList.add('visible');
+}
