@@ -1,10 +1,10 @@
 .logo {
-  @include photo('/src/img/logo/logo.png');
+  @include photo('../../img/logo/logo.png');
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url('/src/img/logo/logo@2x.png');
+    background-image: url('../../img/logo/logo@2x.png');
   }
 
   @include breakpoint(max, tablet) {
@@ -25,6 +25,6 @@
   @include breakpoint(min, laptop) {
     @include size(38px, 37px);
     margin-right: 43px;
-    background-image: url('/src/img/logo/logo.svg');
+    background-image: url('../../img/logo/logo.svg');
   }
 }
