@@ -4,9 +4,9 @@ import {
   sampleCoctaileCard,
   cocktailsList,
 } from '../markup/sampleCoctaileCard';
-import { sorryContent } from '../markup/sorryContent';
 
 const form = document.querySelector('.search-form');
+const sorry = document.querySelector('[data-sorry]');
 
 form.addEventListener('submit', onSubmit);
 
@@ -28,10 +28,11 @@ function onSubmit(e) {
     })
     .then(data => {
       if (!data.drinks) {
-        cocktailsList?.insertAdjacentHTML('beforeend', sorryContent());
+        sorry.classList.remove('visually-hidden');
         return;
       }
 
+      sorry.classList.add('visually-hidden');
       data.drinks.forEach(drink => {
         sampleCoctaileCard(drink);
       });
