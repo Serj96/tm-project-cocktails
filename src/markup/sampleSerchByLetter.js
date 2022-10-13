@@ -1,6 +1,5 @@
-export async function sampleSerchByLetter({ strDrinkThumb, strDrink, idDrink }) {
-
-    return `<li class='gallery__card'>
+export function sampleSerchByLetter({ strDrinkThumb, strDrink, idDrink }) {
+  return `<li class='gallery__card'>
 
      <img src=${strDrinkThumb} alt=${strDrink} class='gallery__card-img'>
      <div class='gallery__card_thumb'>
