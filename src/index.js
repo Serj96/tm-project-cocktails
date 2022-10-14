@@ -4,7 +4,6 @@ import './servise/apiData';
 
 import './js/header';
 
-import './js/themeChange';
 import './index';
 
 import './js/getRandomCoctails';

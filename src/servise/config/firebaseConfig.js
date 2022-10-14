@@ -1,6 +1,6 @@
 export const firebaseConfig = {
   apiKey: 'AIzaSyCcrQPkJhmJrHgd5-G3IyyeuM6ODHXWVR0',
-  authDomain: 'coctailes-js.firebaseapp.com',
+  authDomain: 'cocktails-ffef8.firebaseapp.com',
   databaseURL:
     'https://coctailes-js-default-rtdb.europe-west1.firebasedatabase.app',
   projectId: 'coctailes-js',
