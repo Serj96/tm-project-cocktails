@@ -58,17 +58,19 @@ function fetch() {
   }
 }
 fetch();
+console.log(arrayLetters);
 
 
 export function getSearch(e) {
   if (e.target.tagName !== 'BUTTON') return;
-  const letter = e.target.dataset.type;
+  const letter = e.target.dataset.type; 
   getInfoByLetter(letter)
     .then(renderSearch)
     .catch(error => {
       console.log(error);
     });
 }
+
 function renderSearch(data) {
   if (data.drinks) {
     const markup = data.drinks.map(sampleSerchByLetter);
@@ -99,6 +101,10 @@ const svg = document.querySelector('.datalist__svg');
 let currentFocus = -1;
 const input = document.querySelector('.datalist__input');
 
+console.log(input);
+
+
+
 input.onfocus = function () {
   letters.style.display = 'block';
 };
@@ -106,6 +112,11 @@ input.onfocus = function () {
 for (let option of letters.options) {
   option.onclick = function () {
     input.value = option.value;
+    getInfoByLetter(input.value)
+    .then(renderSearch)
+    .catch(error => {
+      console.log(error);
+    });
     letters.style.display = 'none';
     if ((letters.style.display = 'none')) {
       input.style.backgroundColor = '#FD5103';
@@ -118,6 +129,7 @@ for (let option of letters.options) {
 input.oninput = function () {
   currentFocus = -1;
   const text = input.value.toUpperCase();
+  
   for (let option of letters.options) {
     if (option.value.toUpperCase().indexOf(text) > -1) {
       option.style.display = 'block';
@@ -150,6 +162,7 @@ function addActive(x) {
   if (currentFocus < 0) currentFocus = x.length - 1;
   x[currentFocus].classList.add('active');
 }
+;
 function removeActive(x) {
   for (let i = 0; i < x.length; i += 1) {
     x[i].classList.remove('active');
