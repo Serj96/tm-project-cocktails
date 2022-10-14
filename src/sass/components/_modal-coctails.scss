@@ -59,9 +59,9 @@
   display: block;
   font-size: 39px;
   &:hover {
-      color: #fd5103;
-      cursor: pointer;
-    }
+    color: #fd5103;
+    cursor: pointer;
+  }
 }
 .cocktail__name {
   font-family: 'Roboto';
@@ -164,7 +164,9 @@
   transition-property: #fd5103;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    @media (min-width: 768px) {margin-top: 40px;}
+  @media (min-width: 768px) {
+    margin-top: 40px;
+  }
 }
 
 .modal__btn:hover {
@@ -208,6 +210,14 @@
 }
 
 .modal__cocktail {
+  body.light-theme & {
+    background: #fff;
+  }
+
+  body.dark-theme & {
+    background: #202025;
+  }
+
   min-width: 320px;
   max-height: 600px;
   overflow-y: auto;
