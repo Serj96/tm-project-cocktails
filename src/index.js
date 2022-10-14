@@ -19,6 +19,7 @@ import './js/coctails';
 
 import './js/favCoctails';
 import './js/favIngridients';
+import {getSearch} from './js/searchByLetter'
+const ulList = document.querySelector('.hero__list');
 
-
-
+ulList.addEventListener('click', getSearch);

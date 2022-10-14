@@ -16,8 +16,13 @@ export function getInfoAboutIngridientByName(ingridientName) {
   return axios(`${BASE_URL}search.php?i=${ingridientName}`);
 }
 
-export function getInfoByLetter(letter) {
-  return axios(`${BASE_URL}search.php?f=${letter}`);
+export async function getInfoByLetter(letter) {
+  try {
+   return await axios.get(`${BASE_URL}search.php?f=${letter}`).then(r => r.data);
+}
+  catch (error) {
+    console.log(error);
+ }
 }
 
 export function gerInfoByName(nameCoc) {

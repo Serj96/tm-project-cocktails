@@ -3,8 +3,10 @@ import { sampleSerchByLetter } from '../markup/sampleSerchByLetter';
 import { checkedBtns } from '../servise/firebase';
 import { getInfoByLetter } from '../servise/apiData';
 import Notiflix from 'notiflix';
+import { ActionCodeURL } from 'firebase/auth';
+import { section } from '../markup/sampleCoctaileCard';
 
-const arrayLetters = [
+let arrayLetters = [
   'A',
   'B',
   'C',
@@ -43,12 +45,10 @@ const arrayLetters = [
   '0',
 ];
 const ulList = document.querySelector('.hero__list');
-const searchLetters = document.querySelectorAll('.hero__btn');
-console.log(searchLetters);
 function markupList(arrayLetters) {
   const markup = arrayLetters.map(
-    ([arrayLetters]) =>
-      `<li class="hero__item"> <button class="hero__btn">${arrayLetters}</button></li>`
+    (arrayLetters) =>
+      `<li class="hero__item"> <button class="hero__btn" type ='button' data-type = ${arrayLetters}>${arrayLetters}</button></li>`
   );
   ulList.innerHTML = markup.join('');
 }
@@ -59,22 +59,31 @@ function fetch() {
 }
 fetch();
 
-let letter = '';
-//searchLetters.addEventListern("click", getSearchCoctail)
 
-/*function getSearchCoctail(e) {
-  console.log(letter);
- getInfoByLetter(letter).then(sampleSerchByLetter()).catch(error => {
-    cocktailsList.innerHTML = sorryContent()
-    console.log(error)
-  } )
- 
+export function getSearch(e) {
+  if (e.target.tagName !== 'BUTTON') return;
+  const letter = e.target.dataset.type;
+  getInfoByLetter(letter)
+    .then(renderSearch)
+    .catch(error => {
+      console.log(error);
+    });
 }
-getSearchCoctail()
-*/
+function renderSearch(data) {
+  if (data.drinks) {
+    const markup = data.drinks.map(sampleSerchByLetter);
+    cocktailsList.innerHTML = markup.join('');
+  } else if (data.drinks === null) {
+     section.innerHTML = sorryContent();
+    return;
+  }
 
-function sorryContent(){
-  return  `<h2 class="sorry__title">Sorry, we didn't find any cocktail for you</h2><picture class="">
+  
+  console.log(data.drinks);
+}
+
+function sorryContent() {
+  return `<h2 class="sorry__title">Sorry, we didn't find any cocktail for you</h2><picture class="">
             <source srcset="./img/pictures/mobile/empty_page_280x308.png 1x, ./img/pictures/mobile/empty_page_560x617@2x.png 2x"
                 media="(max-width: 767.99px)" />
             <source srcset="./img/pictures/tablet/empty_page_345x381.png 1x, ./img/pictures/tablet/empty_page_690x762@2x.png 2x"
@@ -82,7 +91,7 @@ function sorryContent(){
             <source
                 srcset="./img/pictures/desktop/empty_page_345x380.png 1x, ./img/pictures/desktop/empty_page_690x760@2x.png 2x" />
             <img  src="./img/pictures/mobile/empty_page_280x308.png alt="no cocktail">
-        </picture>`
+        </picture>`;
 }
 
 //datalist
@@ -118,34 +127,31 @@ input.oninput = function () {
   }
 };
 
-input.onkeydown = function(e) {
-  if(e.keyCode === 40){
-    currentFocus +=1
-   addActive(letters.options);
-  }
-  else if(e.keyCode == 38){
-    currentFocus -=1
-   addActive(letters.options);
-  }
-  else if(e.keyCode == 13){
+input.onkeydown = function (e) {
+  if (e.keyCode === 40) {
+    currentFocus += 1;
+    addActive(letters.options);
+  } else if (e.keyCode == 38) {
+    currentFocus -= 1;
+    addActive(letters.options);
+  } else if (e.keyCode == 13) {
     e.preventDefault();
-        if (currentFocus > -1) {
-          /*and simulate a click on the "active" item:*/
-          if (letters.options) letters.options[currentFocus].click();
-        }
-  }
-}
-
-function addActive(x) {
-    if (!x) return false;
-    removeActive(x);
-    if (currentFocus >= x.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = (x.length - 1);
-    x[currentFocus].classList.add("active");
-  }
-  function removeActive(x) {
-    for (let i = 0; i < x.length; i+=1) {
-      x[i].classList.remove("active");
+    if (currentFocus > -1) {
+      /*and simulate a click on the "active" item:*/
+      if (letters.options) letters.options[currentFocus].click();
     }
   }
+};
 
+function addActive(x) {
+  if (!x) return false;
+  removeActive(x);
+  if (currentFocus >= x.length) currentFocus = 0;
+  if (currentFocus < 0) currentFocus = x.length - 1;
+  x[currentFocus].classList.add('active');
+}
+function removeActive(x) {
+  for (let i = 0; i < x.length; i += 1) {
+    x[i].classList.remove('active');
+  }
+}
